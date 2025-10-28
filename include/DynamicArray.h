@@ -5,56 +5,76 @@
 #ifndef MINI_STL_DYNAMICARRAY_H
 #define MINI_STL_DYNAMICARRAY_H
 
-namespace mystl
-{
-    template <typename T>
-    class DynamicArray
-    {
+namespace mystl {
+    template<typename T>
+    class DynamicArray {
     private:
         T *data;
         size_t size;
         size_t capacity;
 
-        void GrowDynamicArray()
-        {
+        void GrowDynamicArray() {
             T *oldData = this->data;
             size_t oldSize = this->size;
             this->capacity *= 2;
-            this->data = new T[oldSize];
-            for (int i = 0; i < oldSize; i++)
-            {
-                this->data[i] = oldData[i];
-            }
+            this->data = new T[this->capacity];
+            this->internalArrayCopy(this->data, oldData, oldSize);
             delete[] oldData;
         }
 
+        static void internalArrayCopy(T *origin, const T *source, const size_t arraySize) {
+            for (int i = 0; i < arraySize; i++) {
+                origin[i] = source[i];
+            }
+        }
+
     public:
-        DynamicArray(size_t capacity)
-        {
+        //constructors
+        DynamicArray() {
+            this->capacity = 2;
+            this->size = 0;
+            this->data = new T[this->capacity];
+        }
+
+        template<size_t N>
+        explicit DynamicArray(const T (&inputData)[N]) {
+            this->capacity = N;
+            this->size = N;
+            this->data = new T[N];
+            this->internalArrayCopy(this->data, inputData, N);
+        }
+
+        explicit DynamicArray(size_t capacity) {
             this->capacity = capacity;
             this->size = 0;
             this->data = new T[capacity];
-        };
+        }
 
-        int getSize() {
+        //deconstructor
+        ~DynamicArray() {
+            delete[] data;
+        }
+
+        int getSize() const {
             return this->size;
         }
 
-        void push(T data)
-        {
+        int getCapacity() const {
+            return this->capacity;
+        }
+
+        void push(const T &data) {
             // If there is no space left, increment that space
-            if (this->size >= this->capacity)
-            {
+            if (this->size >= this->capacity) {
                 this->GrowDynamicArray();
             }
             this->data[this->size] = data;
             this->size++;
         }
 
-        T pop() 
-        {
+        T pop() {
             size_t currentSize = this->size;
-            if(currentSize > 0) {
+            if (currentSize > 0) {
                 this->size--;
                 return this->data[currentSize - 1];
             }
@@ -63,20 +83,27 @@ namespace mystl
             return 0;
         }
 
-        void PrintArray()
-        {
+        //we return a reference
+        DynamicArray &resize() {
+        }
+
+        void clear() {
+            delete[] this->data;
+            this->data = nullptr;
+            this->size = 0;
+            this->capacity = 2;
+        }
+
+        void PrintArray() {
             std::cout << "[";
-            for (int i = 0; i < this->size; i++)
-            {
+            for (int i = 0; i < this->size; i++) {
                 std::cout << this->data[i];
-                if (i != this->size - 1)
-                {
+                if (i != this->size - 1) {
                     std::cout << " - ";
                 }
             }
-            std::cout << "]\n";
+            std::cout << "] - SIZE: " << this->size << "\n";
         }
     };
-
 }
 #endif // MINI_STL_DYNAMICARRAY_H

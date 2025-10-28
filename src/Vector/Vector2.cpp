@@ -5,19 +5,22 @@
 #include "../../include/Vector/Vector2.h"
 
 namespace mystl {
-
     //Constructor
-    Vector2::Vector2(float x, float y): x(x), y(y) {};
+    Vector2::Vector2(float x, float y) : x(x), y(y) {
+    };
 
     float Vector2::getX() {
         return x;
     }
+
     float Vector2::getY() {
         return x;
     }
+
     void Vector2::setX(float newX) {
         x = newX;
     }
+
     void Vector2::setY(float newY) {
         y = newY;
     }
@@ -26,13 +29,11 @@ namespace mystl {
         std::cout << "\nX:" << x << ", Y:" << y << "\n";
     }
 
-    Vector2 Vector2::operator+(const Vector2& vector) const {
+    Vector2 Vector2::operator+(const Vector2 &vector) const {
         return Vector2(x + vector.x, y + vector.y);
     }
 
     Vector2 Vector2::operator-(const Vector2 &vector) const {
         return Vector2(x - vector.x, y - vector.y);
     }
-
-
 }
