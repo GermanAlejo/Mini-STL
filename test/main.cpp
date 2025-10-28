@@ -38,6 +38,9 @@ int main() {
     std::string s = "test2";
     arrayStr.push(s);
     arrayStr.PrintArray();
+    std::string s2 = arrayStr.pop();
+    arrayStr.PrintArray();
+    std::cout << "Poped: " << s2 << "\n";
 
     return 0;
 }
