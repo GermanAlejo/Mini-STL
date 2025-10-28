@@ -18,13 +18,13 @@ namespace mystl {
             size_t oldSize = this->size;
             this->capacity *= 2;
             this->data = new T[this->capacity];
-            this->internalArrayCopy(this->data, oldData, oldSize);
+            internalArrayCopy(this->data, oldData, oldSize);
             delete[] oldData;
         }
 
-        static void internalArrayCopy(T *origin, const T *source, const size_t arraySize) {
-            for (int i = 0; i < arraySize; i++) {
-                origin[i] = source[i];
+        static void internalArrayCopy(T *newArr, const T *source, const size_t arraySize) {
+            for (int i = 0; i < arraySize; ++i) {
+                newArr[i] = source[i];
             }
         }
 
@@ -63,19 +63,23 @@ namespace mystl {
             return this->capacity;
         }
 
+        T get(size_t index) const {
+            return this->data[index];
+        }
+
         void push(const T &data) {
             // If there is no space left, increment that space
             if (this->size >= this->capacity) {
                 this->GrowDynamicArray();
             }
             this->data[this->size] = data;
-            this->size++;
+            ++this->size;
         }
 
         T pop() {
             size_t currentSize = this->size;
             if (currentSize > 0) {
-                this->size--;
+                --this->size;
                 return this->data[currentSize - 1];
             }
             //Log error
@@ -84,7 +88,44 @@ namespace mystl {
         }
 
         //we return a reference
-        DynamicArray &resize() {
+        DynamicArray& resize(size_t newSize) {
+            if (newSize > this->size) {
+                T* newData = new T[newSize];
+                internalArrayCopy(newData, this->data, this->size);
+                delete[] this->data;
+                this->data = newData;
+            } else if (newSize < this->size) {
+                for (size_t i = newSize; i < this->size; ++i) {
+                    data[i].~T();
+                }
+            }
+
+            this->size = newSize;
+            this->capacity = newSize;
+
+            return *this;
+        }
+
+        DynamicArray& operator=(const DynamicArray& originalArr) {
+            if (this == &originalArr) return *this; // self-assignment check
+
+            // Free existing memory
+            delete[] data;
+
+            // Copy new data
+            capacity = originalArr.capacity;
+            size = originalArr.size;
+            data = new T[capacity];
+            for (size_t i = 0; i < size; ++i) {
+                data[i] = originalArr.data[i];
+            }
+
+            return *this;
+        }
+
+        void reserve(size_t newCapacity) {
+            if (newCapacity > this->capacity) {
+            }
         }
 
         void clear() {
@@ -94,9 +135,9 @@ namespace mystl {
             this->capacity = 2;
         }
 
-        void PrintArray() {
+        void PrintArray() const {
             std::cout << "[";
-            for (int i = 0; i < this->size; i++) {
+            for (int i = 0; i < this->size; ++i) {
                 std::cout << this->data[i];
                 if (i != this->size - 1) {
                     std::cout << " - ";

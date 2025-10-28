@@ -41,6 +41,28 @@ int main() {
     std::string s2 = arrayStr.pop();
     arrayStr.PrintArray();
     std::cout << "Poped: " << s2 << "\n";
+    std::cout << "Get second from int array: " << newDrray.get(1) << "\n";
+    std::cout << "Incrementing size by 2\n";
+    newDrray.resize(4);
+    newDrray.PrintArray();
+    std::cout << "Decrementing size by 2\n";
+    newDrray.resize(2);
+    newDrray.PrintArray();
+    std::cout << "Testing method chaining, current size: " << newDrray.getSize() <<"\n";
+    newDrray.resize(3).push(1);
+    newDrray.PrintArray();
+
+    std::cout << "testing copy operator overload, coping: ";
+    newDrray.PrintArray();
+    mystl::DynamicArray<int> array4 = newDrray;
+    std::cout << "copy: ";
+    array4.PrintArray();
+
+    newDrray.push(2);
+    newDrray.PrintArray();
+
+    array4.push(1);
+    array4.PrintArray();
 
     return 0;
 }

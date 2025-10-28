@@ -12,15 +12,15 @@ Each section lists the core **entities** (containers/classes) and their **implem
 
 * [x] **push(T value)** — Add an element to the end; resize if capacity is full.
 * [x] **pop()** — Remove the last element; optionally shrink capacity.
-* [ ] **resize(size_t newSize)** — Change array size, reallocating and copying elements.
-* [ ] **get(size_t index)** / **operator[]** — Access an element at a specific index.
+* [x] **resize(size_t newSize)** — Change array size, reallocating and copying elements.
+* [x] **get(size_t index)** / **operator[]** — Access an element at a specific index.
 * [x] **capacity()** — Return the allocated capacity (total slots).
 * [x] **size()** — Return the number of elements currently stored.
 * [x] **clear()** — Remove all elements and reset the size.
 * [ ] **reserve(size_t newCapacity)** — Preallocate memory for performance.
-* [ ] **Constructors / Destructor** — Handle memory allocation and cleanup.
-* [ ] **Copy Constructor / Copy Assignment (`operator=`)** — Implement deep copy behavior.
-* [ ] **Const-correct methods** — Mark methods that don’t modify data as `const`.
+* [x] **Constructors / Destructor** — Handle memory allocation and cleanup.
+* [x] **Copy Constructor / Copy Assignment (`operator=`)** — Implement deep copy behavior.
+* [x] **Const-correct methods** — Mark methods that don’t modify data as `const`.
 
 ---
 
