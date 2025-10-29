@@ -2,6 +2,7 @@
 #include <string>
 #include "../include/Vector/Vector2.h"
 #include "../include/DynamicArray.h"
+#include "../include/LinkedList/LinkedList.h"
 
 int main() {
     //mystl::Vector2 vector (1.2f, 2.2f);
@@ -13,6 +14,7 @@ int main() {
     //
     //mystl::Vector2 vector4 = vector3 - vector2;
     //vector4.PrintVector();
+    /*
     mystl::DynamicArray<int> newDrray(10);
     newDrray.PrintArray();
 
@@ -63,6 +65,15 @@ int main() {
 
     array4.push(1);
     array4.PrintArray();
+*/
+    std::cout << "Testing Linked lists\n";
+    mystl::LinkedList<int> newList({1,2,3});
+    newList.printList();
+    std::cout << "Get second: " << newList.getElement(1) << "\n";
+    newList.pushFront(4);
+    newList.printList();
+    newList.pushBack(5);
+    newList.printList();
 
     return 0;
 }

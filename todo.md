@@ -28,10 +28,10 @@ Each section lists the core **entities** (containers/classes) and their **implem
 
 *A sequential list of nodes where each node points to the next (and optionally previous).*
 
-* [ ] **Node struct** — Holds `data` and pointer(s) to neighbor nodes.
+* [x] **Node struct** — Holds `data` and pointer(s) to neighbor nodes.
 * [ ] **push_front(T value)** — Insert at the beginning.
 * [ ] **push_back(T value)** — Insert at the end.
-* [ ] **pop_front()** — Remove the first element.
+* [x] **pop_front()** — Remove the first element.
 * [ ] **pop_back()** — Remove the last element.
 * [ ] **insert(size_t index, T value)** — Insert at a specific position.
 * [ ] **remove(size_t index)** — Remove a node by position.

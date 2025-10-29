@@ -2,8 +2,11 @@
 // Created by german on 14/10/25.
 //
 
+#pragma once
 #ifndef MINI_STL_DYNAMICARRAY_H
 #define MINI_STL_DYNAMICARRAY_H
+
+#include "common.h"
 
 namespace mystl {
     template<typename T>
