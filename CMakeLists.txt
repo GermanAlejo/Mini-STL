@@ -15,7 +15,6 @@ file(GLOB_RECURSE VECTOR_SRC "src/Vector/*.cpp")
 add_library(vector ${VECTOR_SRC})
 target_include_directories(vector PUBLIC include)
 
-add_executable(Mini_STL test/main.cpp
-        include/common.h)
+add_executable(Mini_STL test/main.cpp)
 
 target_link_libraries(Mini_STL PRIVATE vector)
