@@ -74,6 +74,8 @@ int main() {
     newList.printList();
     newList.pushBack(5);
     newList.printList();
+    std::cout << "\nPopped: " << newList.popFront() << "\n";
+    newList.printList();
 
     return 0;
 }

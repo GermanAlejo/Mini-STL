@@ -19,11 +19,6 @@ namespace mystl {
             //constructor
             explicit Node(const T value) : data(value), prev(nullptr), next(nullptr) {
             }
-
-            ~Node() {
-                delete prev;
-                delete next;
-            }
         };
 
         Node *head;
@@ -60,6 +55,18 @@ namespace mystl {
             }
         }
 
+        ~LinkedList() {
+            Node* current = head;
+            while (current) {
+                Node* nextNode = current->next; // store next node
+                delete current;                 // delete current node
+                current = nextNode;             // move to next
+            }
+            head = nullptr;
+            tail = nullptr;
+            listSize = 0;
+        }
+
         T &getElement(const size_t index) {
             return traverseNode(index)->data;
         }
@@ -90,7 +97,22 @@ namespace mystl {
         }
 
         T popFront() {
-            
+            if (!head) {
+                //error
+                throw std::out_of_range("List is empty");
+            }
+
+            Node *oldFront = head;
+            head = head->next;
+            if (head) {
+                head->prev = nullptr;
+            } else {
+                tail = nullptr;
+            }
+            T val = oldFront->data;
+            delete oldFront;
+            --this->listSize;
+            return val;
         }
 
         void printList() {
