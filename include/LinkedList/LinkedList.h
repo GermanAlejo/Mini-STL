@@ -115,12 +115,54 @@ namespace mystl {
             return val;
         }
 
+        T popBack() {
+            if (!head) {
+                //error
+                throw std::out_of_range("List is empty");
+            }
+            Node *oldTail = tail;
+            tail = tail->prev;
+            if (tail) {
+                tail->next = nullptr;
+            } else {
+                tail = nullptr;
+            }
+            T val = oldTail->data;
+            delete oldTail;
+            --this->listSize;
+            return val;
+        }
+
+        void insertValue(const size_t index, T value) {
+            if (index > listSize) {
+                throw std::out_of_range("Index out of bounds");
+            }
+
+            if (index == 0) {
+                pushFront(value);
+                return;
+            }
+
+            if (index == listSize) {
+                pushBack(value);
+                return;
+            }
+            Node *newNode = new Node(value);
+            Node *posNode = traverseNode(index);
+            Node *aux = posNode->prev;
+            newNode->prev = aux;
+            newNode->next = posNode;
+            aux->next = newNode;
+            posNode->prev = newNode;
+            ++this->listSize;
+        }
+
         void printList() {
             Node *current = this->head;
-            std::cout << "First: " << current->data;
+            std::cout << current->data;
             for (size_t i = 0; i < this->listSize; ++i) {
                 if (current == tail) {
-                    std::cout << " - END\n";
+                    std::cout << "\n";
                 } else {
                     current = current->next;
                     std::cout << "->" << current->data;

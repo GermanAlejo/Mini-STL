@@ -76,6 +76,11 @@ int main() {
     newList.printList();
     std::cout << "\nPopped: " << newList.popFront() << "\n";
     newList.printList();
+    std::cout << "\nInsert value: 6 in pos 2\n";
+    newList.insertValue(2, 6);
+    newList.printList();
+    std::cout << "\nPop back:" << newList.popBack() << "\n";
+    newList.printList();
 
     return 0;
 }
