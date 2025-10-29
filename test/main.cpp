@@ -81,6 +81,10 @@ int main() {
     newList.printList();
     std::cout << "\nPop back:" << newList.popBack() << "\n";
     newList.printList();
+    std::cout << "\nTesting remove node\n";
+    int a = newList.remove(3);
+    std::cout << "\nRemoved: " << a << "\n";
+    newList.printList();
 
     return 0;
 }

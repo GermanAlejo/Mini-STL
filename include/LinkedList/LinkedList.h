@@ -157,6 +157,28 @@ namespace mystl {
             ++this->listSize;
         }
 
+        T remove(const size_t index) {
+            if (index > listSize) {
+                throw std::out_of_range("Index out of bounds");
+            }
+            if (index == listSize) {
+                return popBack();
+            }
+
+            if (index == 0) {
+                return popFront();
+            }
+
+            Node *toRemove = traverseNode(index);
+            Node *aux = toRemove->next;
+            aux->prev = toRemove->prev;
+            toRemove->prev->next = aux;
+            --listSize;
+            T val = toRemove->data;
+            delete toRemove;
+            return val;
+        }
+
         void printList() {
             Node *current = this->head;
             std::cout << current->data;

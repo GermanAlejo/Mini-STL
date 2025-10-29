@@ -2,9 +2,9 @@
 // Created by german on 29/10/25.
 //
 
+#pragma once
 #ifndef MINI_STL_COMMON_H
 #define MINI_STL_COMMON_H
-#pragma once
 
 #include <iostream>
 #include <cstddef>
