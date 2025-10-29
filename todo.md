@@ -32,9 +32,9 @@ Each section lists the core **entities** (containers/classes) and their **implem
 * [x] **push_front(T value)** — Insert at the beginning.
 * [x] **push_back(T value)** — Insert at the end.
 * [x] **pop_front()** — Remove the first element.
-* [ ] **pop_back()** — Remove the last element.
+* [x] **pop_back()** — Remove the last element.
 * [x] **insert(size_t index, T value)** — Insert at a specific position.
-* [ ] **remove(size_t index)** — Remove a node by position.
+* [x] **remove(size_t index)** — Remove a node by position.
 * [x] **get(size_t index)** — Access data by index.
 * [ ] **clear()** — Delete all nodes and free memory.
 * [ ] **Destructor** — Clean up all dynamically allocated nodes.

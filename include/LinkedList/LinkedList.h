@@ -179,7 +179,23 @@ namespace mystl {
             return val;
         }
 
+        void clear() {
+            Node *current = this->head;
+            while (current) {
+                Node *nextNode = current->next;
+                delete current;
+                current = nextNode;
+            }
+            head = nullptr;
+            tail = nullptr;
+            listSize = 0;
+        }
+
         void printList() {
+            if (listSize == 0) {
+                std::cout << "\nEmpty list\n";
+                return;
+            }
             Node *current = this->head;
             std::cout << current->data;
             for (size_t i = 0; i < this->listSize; ++i) {

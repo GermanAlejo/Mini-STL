@@ -85,6 +85,8 @@ int main() {
     int a = newList.remove(3);
     std::cout << "\nRemoved: " << a << "\n";
     newList.printList();
+    newList.clear();
+    newList.printList();
 
     return 0;
 }
