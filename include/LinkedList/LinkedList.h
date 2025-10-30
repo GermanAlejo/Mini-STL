@@ -94,6 +94,7 @@ namespace mystl {
                 tail->next = newNode;
                 tail = newNode;
             }
+            ++listSize;
         }
 
         T popFront() {
@@ -189,6 +190,14 @@ namespace mystl {
             head = nullptr;
             tail = nullptr;
             listSize = 0;
+        }
+
+        int getSize() {
+            return listSize;
+        }
+
+        bool isEmpty() {
+            return this->getSize() == 0 ? true : false;
         }
 
         void printList() {

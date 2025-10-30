@@ -2,8 +2,8 @@
 // Created by german on 14/10/25.
 //
 #pragma once
-#ifndef PLAYGROUND_VECTOR_H
-#define PLAYGROUND_VECTOR_H
+#ifndef MINI_STL_VECTOR_H
+#define MINI_STL_VECTOR_H
 
 namespace mystl {
     class Vector2 {

@@ -45,11 +45,12 @@ Each section lists the core **entities** (containers/classes) and their **implem
 
 *A LIFO (Last-In, First-Out) structure built on `DynamicArray` or `LinkedList`.*
 
-* [ ] **push(T value)** — Add element on top.
-* [ ] **pop()** — Remove top element.
-* [ ] **top()** — Access the element at the top without removing it.
-* [ ] **empty()** — Check if the stack is empty.
-* [ ] **size()** — Get current element count.
+* [x] **push(T value)** — Add element on top.
+* [x] **pop()** — Remove top element.
+* [x] **top()** — Access the element at the top without removing it.
+* [x] **empty()** — Check if the stack is empty.
+* [x] **size()** — Get current element count.
+* [x] **clear()** — Remove all elements.
 
 ---
 
@@ -57,12 +58,13 @@ Each section lists the core **entities** (containers/classes) and their **implem
 
 *A FIFO (First-In, First-Out) structure using `DynamicArray` or `LinkedList` internally.*
 
-* [ ] **enqueue(T value)** — Add element to the back of the queue.
-* [ ] **dequeue()** — Remove element from the front.
-* [ ] **front()** — Access the front element.
-* [ ] **back()** — Access the last element.
-* [ ] **empty()** — Check if the queue is empty.
-* [ ] **size()** — Return current element count.
+* [x] **enqueue(T value)** — Add element to the back of the queue.
+* [x] **dequeue()** — Remove element from the front.
+* [x] **front()** — Access the front element.
+* [x] **back()** — Access the last element.
+* [x] **empty()** — Check if the queue is empty.
+* [x] **size()** — Return current element count.
+* [x] **clear()** — Remove all elements.
 
 ---
 

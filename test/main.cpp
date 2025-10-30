@@ -3,6 +3,8 @@
 #include "../include/Vector/Vector2.h"
 #include "../include/DynamicArray.h"
 #include "../include/LinkedList/LinkedList.h"
+#include "../include/Stack.h"
+#include "../include/Queue.h"
 
 int main() {
     //mystl::Vector2 vector (1.2f, 2.2f);
@@ -66,6 +68,7 @@ int main() {
     array4.push(1);
     array4.PrintArray();
 */
+/*
     std::cout << "Testing Linked lists\n";
     mystl::LinkedList<int> newList({1,2,3});
     newList.printList();
@@ -86,7 +89,40 @@ int main() {
     std::cout << "\nRemoved: " << a << "\n";
     newList.printList();
     newList.clear();
-    newList.printList();
+    newList.printList();*/
+/*
+    std::cout << "Testing Stack\n";
+    mystl::Stack<int> newStack;
+    mystl::Stack<float> staclFloats({1.2, 2.1});
+    staclFloats.push(3.1);
+    staclFloats.printStack();
+    newStack.push(2);
+    newStack.push(10);
+    newStack.push(12);
+    newStack.printStack();
+    std::cout << "\nPopped: " << staclFloats.pop() << "\n";
+    staclFloats.printStack();
+    std::cout << "\nTOP: " << newStack.top() << "\n";
+    
+    std::cout << std::boolalpha << "\nIS EMPTY: " << staclFloats.isEmpty() << "\n";
+    staclFloats.clear();
+    std::cout << "\nIS EMPTY: " << staclFloats.isEmpty() << "\n";
+    */
+    std::cout << "\nTest queue\n";
+    mystl::Queue<int> newQueue;
+    newQueue.enqueue(1);
+    newQueue.enqueue(2);
+    newQueue.enqueue(3);
+    newQueue.printQueue();
+    newQueue.dequeue();
+    newQueue.printQueue();
+    newQueue.enqueue(4);
+    newQueue.printQueue();
+    std::cout << "\nSIZE: " << newQueue.getSize() << "\n";
+    std::cout << "\nFront: " << newQueue.front() << " BACK: " << newQueue.back() << "\n";
+    std::cout << std::boolalpha << "\nEmpty: " << newQueue.isEmpty() << "\n";
+    newQueue.clear();
+    std::cout << std::boolalpha << "\nEmpty 2: " << newQueue.isEmpty() << "\n";
 
     return 0;
 }
