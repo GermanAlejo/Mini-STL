@@ -17,7 +17,7 @@ namespace mystl {
             }
 
             template<size_t N>
-            Stack(const T (&inputData)[N]): internalArray(inputData) {
+            explicit Stack(const T (&inputData)[N]): internalArray(inputData) {
                 
             }
 

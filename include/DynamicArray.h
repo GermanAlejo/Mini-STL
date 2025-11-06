@@ -126,11 +126,6 @@ namespace mystl {
             return *this;
         }
 
-        void reserve(size_t newCapacity) {
-            if (newCapacity > this->capacity) {
-            }
-        }
-
         void clear() {
             delete[] this->data;
             this->data = nullptr;

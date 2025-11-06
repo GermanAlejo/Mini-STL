@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+
+#include "Map.h"
 #include "../include/Vector/Vector2.h"
 #include "../include/DynamicArray.h"
 #include "../include/LinkedList/LinkedList.h"
@@ -108,6 +110,7 @@ int main() {
     staclFloats.clear();
     std::cout << "\nIS EMPTY: " << staclFloats.isEmpty() << "\n";
     */
+    /*
     std::cout << "\nTest queue\n";
     mystl::Queue<int> newQueue;
     newQueue.enqueue(1);
@@ -123,6 +126,13 @@ int main() {
     std::cout << std::boolalpha << "\nEmpty: " << newQueue.isEmpty() << "\n";
     newQueue.clear();
     std::cout << std::boolalpha << "\nEmpty 2: " << newQueue.isEmpty() << "\n";
+*/
+
+    mystl::Map<std::string, int> testMap;
+    testMap.insert("k1", 1);
+    testMap.print();
+    testMap.insert("k2", 2);
+    std::cout << std::boolalpha << "Does k2?" << testMap.contains("k3");
 
     return 0;
 }

@@ -18,7 +18,7 @@ namespace mystl {
             }
 
             template<size_t N>
-            Queue(const T (&inputData)[N]): internalList(inputData) {
+            explicit Queue(const T (&inputData)[N]): internalList(inputData) {
                 
             }
 
