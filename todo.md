@@ -72,10 +72,10 @@ Each section lists the core **entities** (containers/classes) and their **implem
 
 *A key–value associative container (like `std::map` or `std::unordered_map`).*
 
-* [ ] **insert(Key, Value)** — Add or update a key–value pair.
-* [ ] **erase(Key)** — Remove pair by key.
-* [ ] **find(Key)** — Retrieve value by key.
-* [ ] **contains(Key)** — Check if a key exists.
+* [x] **insert(Key, Value)** — Add or update a key–value pair.
+* [x] **erase(Key)** — Remove pair by key.
+* [x] **find(Key)** — Retrieve value by key.
+* [x] **contains(Key)** — Check if a key exists.
 * [ ] **clear()** — Remove all pairs.
 
 ---

@@ -132,7 +132,20 @@ int main() {
     testMap.insert("k1", 1);
     testMap.print();
     testMap.insert("k2", 2);
-    std::cout << std::boolalpha << "Does k2?" << testMap.contains("k3");
+    testMap.print();
+    std::cout << std::boolalpha << "Does k2?" << testMap.contains("k3") << "\n";
+    testMap.insert("k3", 3);
+    testMap.insert("k4", 4);
+    if (int *res = testMap.find("k3"); res != nullptr) {
+        std::cout << "testing find: " << *res << "\n";
+    } else {
+        std::cout << "not found k2\n";
+    }
+    std::cout << "Testing erase: \n";
+    testMap.print();
+    testMap.erase("k2");
+    testMap.print();
 
+    std::cout << std::boolalpha << "Does k2?" << testMap.contains("k2") << "\n";
     return 0;
 }

@@ -18,12 +18,13 @@ namespace mystl {
             K key;
             V value;
             //constructor
-            Pair(): key(), value() {}
+            Pair() : key(), value() {
+            }
 
             Pair(const K &key, const V &value) : key(key), value(value) {
             }
 
-            Pair& operator=(const Pair& original) {
+            Pair &operator=(const Pair &original) {
                 if (this == &original) return *this; // self-assignment check
 
                 // Copy new data
@@ -68,8 +69,17 @@ namespace mystl {
         ~Map() {
         }
 
+        V* find(const K& key) {
+            for (size_t i = 0; i < size; ++i) {
+                if (Pair current = data[i]; key == current.key) {
+                    return &data[i].value;
+                }
+            }
+            return nullptr;
+        }
+
         bool contains(K key) {
-            for (size_t i = 0; i < size; i++) {
+            for (size_t i = 0; i < size; ++i) {
                 if (Pair current = data[i]; key == current.key) {
                     return true;
                 }
@@ -96,6 +106,39 @@ namespace mystl {
             size++;
         }
 
+        void erase(K key) {
+            size_t index = size; // sentinel equal to "not found"
+            for (size_t i = 0; i < size; ++i) {
+                if (Pair current = data[i]; key == current.key) {
+                    //encontrado
+                    index = i;
+                    break;
+                }
+            }
+
+            if (index == size) {
+                //no encontrado
+                return;
+            }
+
+            for (size_t j = index; j < size - 1; ++j) {
+                data[j] = data[j + 1];
+            }
+
+            --size;
+        }
+
+        void clear() {
+            for (size_t i = 0; i < size; ++i) {
+                data[i].~Pair();
+            }
+            size = 0;
+        }
+
+        size_t getSize() {
+            return size;
+        }
+
         Map &operator=(const Map &originalMap) {
             if (this == &originalMap) return *this; // self-assignment check
 
@@ -116,7 +159,7 @@ namespace mystl {
         void print() const {
             size_t i = 0;
             while (i < size) {
-                data->Print();
+                data[i].Print();
                 ++i;
             }
             std::cout << "\n";
