@@ -18,13 +18,13 @@ namespace mystl {
             K key;
             V value;
             //constructor
-            Pair() : key(), value() {
+            Pair() noexcept: key(), value() {
             }
 
-            Pair(const K &key, const V &value) : key(key), value(value) {
+            Pair(const K &key, const V &value) noexcept : key(key), value(value) {
             }
 
-            Pair &operator=(const Pair &original) {
+            Pair &operator=(const Pair &original) noexcept {
                 if (this == &original) return *this; // self-assignment check
 
                 // Copy new data
@@ -39,9 +39,9 @@ namespace mystl {
             }
         };
 
-        Pair *data;
-        size_t size;
         size_t capacity;
+        size_t size;
+        Pair *data;
 
         void growInternalArray() {
             Pair *oldData = this->data;
@@ -53,63 +53,105 @@ namespace mystl {
         }
 
         static void internalArrayCopy(Pair *newArr, const Pair *source, const size_t arraySize) {
-            for (int i = 0; i < arraySize; ++i) {
+            for (size_t i = 0; i < arraySize; ++i) {
                 newArr[i] = source[i];
             }
         }
 
     public:
-        Map() {
-            size = 0;
-            capacity = 2;
+        Map(): capacity(2), size(0), data(nullptr) {
             data = new Pair[capacity];
+        }
+
+        //deep copy
+        Map(const Map& other): capacity(other.capacity), size(other.size), data(new Pair[other.capacity])
+        {
+            for (size_t i = 0; i < size ; ++i) {
+                data[i] = other.data[i];
+            }
+        }
+
+        //move constructor
+        Map(Map&& other) noexcept: capacity(other.capacity), size(other.size), data(other.data) {
+            other.size = 0;
+            other.capacity = 0;
+            other.data = nullptr;
+        }
+
+        Map& operator=(Map&& other) noexcept {
+            swap(*this, other);
+            return *this;
+        }
+
+        Map& operator=(const Map &originalMap) noexcept {
+            if (this == &originalMap) return *this; // self-assignment check
+
+            // Free existing memory
+            delete[] data;
+
+            // Copy new data
+            capacity = originalMap.capacity;
+            size = originalMap.size;
+            data = new Pair[capacity];
+            for (size_t i = 0; i < size; ++i) {
+                data[i] = originalMap.data[i];
+            }
+            return *this;
         }
 
         //Delete here all pairs and set capacity to 0
         ~Map() {
+            delete[] data;
         }
 
-        V* find(const K& key) {
+        friend void swap(Map& a, Map& b) noexcept {
+            using std::swap;
+            swap(a.size, b.size);
+            swap(a.capacity, b.capacity);
+            swap(a.data, b.data);
+        }
+
+        V* find(const K& key) const {
             for (size_t i = 0; i < size; ++i) {
-                if (Pair current = data[i]; key == current.key) {
+                if (key == data[i].key) {
                     return &data[i].value;
                 }
             }
             return nullptr;
         }
 
-        bool contains(K key) {
+        bool contains(const K& key) const {
             for (size_t i = 0; i < size; ++i) {
-                if (Pair current = data[i]; key == current.key) {
+                if (key == data[i].key) {
                     return true;
                 }
             }
             return false;
         }
 
-        void insert(K key, V value) {
+        void insert(const K& key, const V& value) {
             if (!contains(key)) {
                 if (size == capacity) {
                     //grow map and increment size
                     this->growInternalArray();
                 }
                 data[size] = Pair(key, value);
+                size++;
             } else {
                 //update value
-                K current;
                 size_t i = 0;
+                K current = data[i].key;
                 while (current != key) {
-                    current = data[i].key;
+                    current = data[++i].key;
                 }
                 data[i].value = value;
             }
-            size++;
         }
 
         void erase(K key) {
             size_t index = size; // sentinel equal to "not found"
             for (size_t i = 0; i < size; ++i) {
-                if (Pair current = data[i]; key == current.key) {
+                if (key == data[i].key) {
                     //encontrado
                     index = i;
                     break;
@@ -129,31 +171,11 @@ namespace mystl {
         }
 
         void clear() {
-            for (size_t i = 0; i < size; ++i) {
-                data[i].~Pair();
-            }
             size = 0;
         }
 
-        size_t getSize() {
+        size_t getSize() const {
             return size;
-        }
-
-        Map &operator=(const Map &originalMap) {
-            if (this == &originalMap) return *this; // self-assignment check
-
-            // Free existing memory
-            delete[] data;
-
-            // Copy new data
-            capacity = originalMap.capacity;
-            size = originalMap.size;
-            data = new Pair[capacity];
-            for (size_t i = 0; i < size; ++i) {
-                data[i] = originalMap.data[i];
-            }
-
-            return *this;
         }
 
         void print() const {

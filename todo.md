@@ -76,7 +76,7 @@ Each section lists the core **entities** (containers/classes) and their **implem
 * [x] **erase(Key)** — Remove pair by key.
 * [x] **find(Key)** — Retrieve value by key.
 * [x] **contains(Key)** — Check if a key exists.
-* [ ] **clear()** — Remove all pairs.
+* [x] **clear()** — Remove all pairs.
 
 ---
 

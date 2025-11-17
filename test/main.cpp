@@ -1,3 +1,4 @@
+#include <cassert>
 #include <iostream>
 #include <string>
 
@@ -133,7 +134,7 @@ int main() {
     testMap.print();
     testMap.insert("k2", 2);
     testMap.print();
-    std::cout << std::boolalpha << "Does k2?" << testMap.contains("k3") << "\n";
+    std::cout << std::boolalpha << "Does k3?" << testMap.contains("k3") << "\n";
     testMap.insert("k3", 3);
     testMap.insert("k4", 4);
     if (int *res = testMap.find("k3"); res != nullptr) {
@@ -145,7 +146,39 @@ int main() {
     testMap.print();
     testMap.erase("k2");
     testMap.print();
-
     std::cout << std::boolalpha << "Does k2?" << testMap.contains("k2") << "\n";
+    //test update
+    testMap.insert("k3", 99);
+    testMap.print();
+    //std::cout << "Test clear\n";
+    //testMap.clear();
+    testMap.print();
+
+    std::cout << "testing copy constructors\n";
+    mystl::Map<std::string, int> testMap2(testMap);
+    testMap2.print();
+
+    std::cout << "testing copy assignment\n";
+    mystl::Map<std::string, int> testMap3;
+    testMap3 = testMap;
+    assert(testMap3.getSize() == testMap.getSize());
+    testMap3.insert("k1", 4);
+    //assert(!testMap.contains("k1")); // check deep copy
+
+    testMap3.print();
+
+    mystl::Map<std::string, int> m5;
+    m5 = std::move(testMap2);
+    assert(m5.getSize() == 3);   // m2 had 3 elements
+    assert(testMap2.getSize() == 0);   // m2 is now empty
+    m5.print();
+
+    mystl::Map<int, std::string> a, b;
+    a.insert(1, "one");
+    b.insert(2, "two");
+    swap(a, b);
+    assert(a.contains(2) && !a.contains(1));
+    assert(b.contains(1) && !b.contains(2));
+
     return 0;
 }
